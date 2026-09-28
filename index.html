@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CarPark — închiriere auto în Moldova</title>
+  <meta name="description" content="CarPark — închiriere auto premium în Moldova, online.">
+  <meta name="theme-color" content="#161616">
+  <link rel="icon" type="image/png" href="Group%203.png">
+  <link rel="apple-touch-icon" href="Group%203.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="#top" class="logo" aria-label="CarPark">
+      <img src="logo.png" alt="" class="logo__light">
+      <img src="logo.png" alt="" class="logo__accent">
+    </a>
+
+    <nav class="nav" id="nav">
+      <a href="#catalog" data-i18n="nav.catalog"></a>
+      <a href="#how" data-i18n="nav.how"></a>
+      <a href="#loyalty" data-i18n="nav.loyalty"></a>
+      <a href="#faq" data-i18n="nav.faq"></a>
+      <a href="#contacts" data-i18n="nav.contacts"></a>
+      <a href="#" class="nav__account" data-account data-i18n="acc.title"></a>
+    </nav>
+
+    <div class="header__actions">
+      <div class="dropdown" data-dropdown="currency">
+        <button class="pill" type="button" aria-haspopup="listbox" aria-expanded="false">
+          <span class="pill__sym" data-currency-symbol></span>
+          <span data-currency-code></span>
+          <svg class="pill__chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <ul class="dropdown__menu" role="listbox"></ul>
+      </div>
+      <div class="dropdown" data-dropdown="lang">
+        <button class="pill" type="button" aria-haspopup="listbox" aria-expanded="false">
+          <svg class="pill__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3Z" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
+          <span data-lang-code></span>
+          <svg class="pill__chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <ul class="dropdown__menu" role="listbox"></ul>
+      </div>
+      <a href="#contacts" class="btn btn--primary btn--sm header__cta" data-i18n="nav.book"></a>
+      <button class="account-btn" id="accountBtn" type="button" data-account data-i18n-aria="acc.title">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="3.8" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="M4.5 20c1-3.8 4-5.8 7.5-5.8s6.5 2 7.5 5.8" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>
+        <img alt="" hidden>
+      </button>
+      <button class="burger" id="burger" type="button" data-i18n-aria="nav.menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="container hero__head">
+    <h1 class="hero__title reveal" data-i18n="hero.title"></h1>
+    <p class="hero__sub reveal">
+      <span data-i18n="hero.sub1"></span><br>
+      <span data-i18n="hero.sub2"></span>
+    </p>
+    <a href="#catalog" class="btn btn--glow reveal" data-i18n="hero.cta"></a>
+  </div>
+
+  <div class="showcase">
+    <div class="showcase__stage" id="heroStage">
+      <!-- slides are rendered by main.js -->
+    </div>
+    <button class="round-btn round-btn--prev" id="heroPrev" type="button" data-i18n-aria="hero.prev">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5 7.5 12l7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="round-btn round-btn--next" id="heroNext" type="button" data-i18n-aria="hero.next">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+
+    <div class="showcase__card">
+      <div class="showcase__row">
+        <div class="showcase__name">
+          <h2 id="heroName"></h2>
+          <p id="heroFrom"></p>
+        </div>
+        <p class="showcase__desc" id="heroDesc"></p>
+      </div>
+      <div class="showcase__row showcase__row--bottom">
+        <dl class="specs" id="heroSpecs"></dl>
+        <a href="#contacts" class="btn btn--dark" id="heroRent">
+          <span data-i18n="hero.rent"></span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <div class="dots" id="heroDots"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BRANDS + TRUST ============ -->
+<section class="brands">
+  <div class="brands__blob" aria-hidden="true"></div>
+  <p class="container eyebrow brands__label" data-i18n="brands.label"></p>
+  <div class="marquee" id="brandMarquee">
+    <div class="marquee__track" id="brandTrack"></div>
+  </div>
+
+  <div class="container trust">
+    <a class="trust__card reveal" href="#contacts">
+      <svg class="trust__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 20c.6-3.4 3-5.5 6-5.5s5.4 2.1 6 5.5M15.5 8.5l2 2 4-4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div>
+        <h3 data-i18n="trust.1.t"></h3>
+        <p data-i18n="trust.1.s"></p>
+      </div>
+      <span class="trust__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m10 7 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    </a>
+    <a class="trust__card reveal" href="#" data-link="google" target="_blank" rel="noopener">
+      <svg class="trust__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9L12 3.5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+      <div>
+        <h3 data-i18n="trust.2.t"></h3>
+        <p data-i18n="trust.2.s"></p>
+      </div>
+      <span class="trust__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m10 7 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    </a>
+    <a class="trust__card reveal" href="#" data-link="whatsapp" target="_blank" rel="noopener">
+      <svg class="trust__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+      <div>
+        <h3 data-i18n="trust.3.t"></h3>
+        <p data-i18n="trust.3.s"></p>
+      </div>
+      <span class="trust__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m10 7 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    </a>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="section how" id="how">
+  <div class="container how__grid">
+    <div class="how__intro reveal">
+      <p class="eyebrow" data-i18n="how.eyebrow"></p>
+      <h2 class="h2" data-i18n="how.title"></h2>
+      <p class="lead" data-i18n="how.text"></p>
+      <a href="#catalog" class="btn btn--glow" data-i18n="hero.cta"></a>
+    </div>
+
+    <div class="how__steps">
+      <article class="step reveal">
+        <span class="step__progress" style="--p:.33" aria-hidden="true"></span>
+        <h3 data-i18n="how.1.t"></h3>
+        <p data-i18n="how.1.s"></p>
+        <div class="step__art step__art--phone" aria-hidden="true">
+          <div class="phone phone--tilt-r">
+            <div class="phone__screen">
+              <div class="phone__bar"><span data-i18n="mock.catalog"></span><i></i></div>
+              <div class="phone__chips"><i class="on"></i><i></i><i></i><i></i></div>
+              <img src="cars/ChatGPT%20Image%20Sep%2028,%202026%20at%2010_53_50%20PM.png" alt="" loading="lazy">
+              <div class="phone__lines"><i></i><i class="short"></i></div>
+              <div class="phone__btn" data-i18n="mock.book"></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="step reveal">
+        <span class="step__progress" style="--p:.66" aria-hidden="true"></span>
+        <h3 data-i18n="how.2.t"></h3>
+        <p data-i18n="how.2.s"></p>
+        <div class="step__art step__art--phone" aria-hidden="true">
+          <div class="phone phone--tilt-l">
+            <div class="phone__screen phone__screen--doc">
+              <div class="phone__bar"><span data-i18n="mock.contract"></span></div>
+              <div class="phone__lines"><i></i><i></i><i class="short"></i><i></i><i class="short"></i></div>
+              <div class="phone__sign">
+                <svg viewBox="0 0 120 40"><path d="M6 30c10-22 18-24 20-12s-4 16 2 6 10-18 14-8 2 14 8 4 8-12 12-4 6 6 12 0 10-6 16-2 10 4 18-2" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+                <span data-i18n="mock.sign"></span>
+              </div>
+              <div class="phone__btn" data-i18n="mock.confirm"></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="step reveal">
+        <span class="step__progress" style="--p:1" aria-hidden="true"></span>
+        <h3 data-i18n="how.3.t"></h3>
+        <p data-i18n="how.3.s"></p>
+        <div class="step__art step__art--car" aria-hidden="true">
+          <img src="cars/ChatGPT%20Image%20Sep%2028,%202026%20at%2010_52_49%20PM.png" alt="" loading="lazy">
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CATALOG ============ -->
+<section class="section catalog" id="catalog">
+  <div class="container">
+    <div class="catalog__head">
+      <div class="reveal">
+        <p class="eyebrow" data-i18n="cat.eyebrow"></p>
+        <h2 class="h2" data-i18n="cat.title"></h2>
+      </div>
+      <div class="catalog__controls">
+        <label class="select">
+          <select id="brandFilter" data-i18n-aria="cat.brand"></select>
+        </label>
+        <label class="search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          <input type="search" id="carSearch" data-i18n-ph="cat.search" data-i18n-aria="cat.search">
+        </label>
+        <label class="select">
+          <select id="carSort" data-i18n-aria="cat.sortLabel">
+            <option value="default" data-i18n="cat.sort.default"></option>
+            <option value="priceAsc" data-i18n="cat.sort.priceAsc"></option>
+            <option value="priceDesc" data-i18n="cat.sort.priceDesc"></option>
+            <option value="power" data-i18n="cat.sort.power"></option>
+          </select>
+        </label>
+      </div>
+    </div>
+
+    <div class="cars" id="carGrid"></div>
+    <p class="cars__empty" id="carEmpty" data-i18n="cat.empty" hidden></p>
+
+    <div class="catalog__more">
+      <button class="btn btn--outline btn--wide" id="carMore" type="button"></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ADVANTAGES ============ -->
+<section class="section adv" id="why">
+  <div class="container">
+    <div class="reveal">
+      <p class="eyebrow" data-i18n="adv.eyebrow"></p>
+      <h2 class="h2" data-i18n="adv.title"></h2>
+    </div>
+    <div class="adv__grid">
+      <article class="adv__item reveal">
+        <span class="icon-tile"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="10" r="2.4" fill="none" stroke="currentColor" stroke-width="1.7"/></svg></span>
+        <h3 data-i18n="adv.1.t"></h3>
+        <p data-i18n="adv.1.s"></p>
+      </article>
+      <article class="adv__item reveal">
+        <span class="icon-tile"><svg viewBox="0 0 24 24"><path d="M5 13v-1a7 7 0 0 1 14 0v1" fill="none" stroke="currentColor" stroke-width="1.7"/><rect x="3.5" y="12.5" width="4" height="6" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.7"/><rect x="16.5" y="12.5" width="4" height="6" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M18.5 18.5c0 1.5-1.8 2.5-5 2.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+        <h3 data-i18n="adv.2.t"></h3>
+        <p data-i18n="adv.2.s"></p>
+      </article>
+      <article class="adv__item reveal">
+        <span class="icon-tile"><svg viewBox="0 0 24 24"><path d="M7 3.5h7l4 4V20a.5.5 0 0 1-.5.5h-10A.5.5 0 0 1 7 20V3.5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M14 3.5V8h4M9.5 16.5c1.2-2 2-2.2 2.3-1s.8 1.4 1.7.2 1.4-1 2 .3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <h3 data-i18n="adv.3.t"></h3>
+        <p data-i18n="adv.3.s"></p>
+      </article>
+      <article class="adv__item reveal">
+        <span class="icon-tile"><svg viewBox="0 0 24 24"><path d="m12 3 1.9 4.6L18.5 9l-4.6 1.9L12 15.5l-1.9-4.6L5.5 9l4.6-1.4L12 3ZM18 15l.9 2.1L21 18l-2.1.9L18 21l-.9-2.1L15 18l2.1-.9L18 15Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+        <h3 data-i18n="adv.4.t"></h3>
+        <p data-i18n="adv.4.s"></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PERSONAL DRIVER ============ -->
+<section class="driver" id="driver">
+  <div class="container">
+    <div class="driver__card reveal">
+      <img class="driver__photo" src="driver.jpg" alt="" loading="lazy">
+      <div class="driver__content">
+        <div>
+        <h2 class="driver__title">
+          <span data-i18n="driver.title1"></span>
+          <span data-i18n="driver.title2"></span>
+        </h2>
+        <p class="driver__text" data-i18n="driver.text"></p>
+        </div>
+        <a class="btn btn--glow driver__cta" href="#driver" data-soon>
+          <span data-i18n="driver.cta"></span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 7 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOYALTY ============ -->
+<section class="section loyalty" id="loyalty">
+  <div class="loyalty__blob loyalty__blob--a" aria-hidden="true"></div>
+  <div class="loyalty__blob loyalty__blob--b" aria-hidden="true"></div>
+
+  <div class="container loyalty__hero">
+    <div class="loyalty__intro reveal">
+      <span class="tag" data-i18n="loy.tag"></span>
+      <h2 class="loyalty__title">
+        <span data-i18n="loy.title"></span>
+        <em>RentSave</em>
+      </h2>
+      <p class="lead" data-i18n="loy.text"></p>
+      <div class="loyalty__actions">
+        <a href="#contacts" class="btn btn--light">
+          <span data-i18n="loy.cta"></span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#" class="btn btn--ghost" data-link="whatsapp" target="_blank" rel="noopener" data-i18n="loy.wa"></a>
+      </div>
+    </div>
+
+    <div class="loyalty__cardwrap reveal">
+      <div class="loycard" id="loyCard">
+        <div class="loycard__glare"></div>
+        <div class="loycard__logo">
+          <img src="logo.png" alt="CarPark">
+          <small>With <b>♥</b> from Moldova</small>
+        </div>
+        <div class="loycard__word">Rent<b>&amp;</b>Save</div>
+        <div class="loycard__sub" data-i18n="loy.cardSub"></div>
+        <img class="loycard__car" src="cars/ChatGPT%20Image%20Sep%2028,%202026%20at%2010_55_45%20PM.png" alt="" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+  <div class="container tiers">
+    <article class="tier tier--popular reveal">
+      <span class="tier__badge" data-i18n="loy.popular"></span>
+      <h3>Silver</h3>
+      <p class="tier__range" data-i18n="loy.silver.range"></p>
+      <p class="tier__pct">5%<span data-i18n="loy.off"></span></p>
+      <ul class="checks">
+        <li data-i18n="loy.silver.1"></li>
+        <li data-i18n="loy.silver.2"></li>
+        <li data-i18n="loy.silver.3"></li>
+      </ul>
+    </article>
+    <article class="tier reveal">
+      <h3>Gold</h3>
+      <p class="tier__range" data-i18n="loy.gold.range"></p>
+      <p class="tier__pct">10%<span data-i18n="loy.off"></span></p>
+      <ul class="checks">
+        <li data-i18n="loy.gold.1"></li>
+        <li data-i18n="loy.gold.2"></li>
+        <li data-i18n="loy.gold.3"></li>
+      </ul>
+    </article>
+    <article class="tier reveal">
+      <h3>Platinum</h3>
+      <p class="tier__range" data-i18n="loy.plat.range"></p>
+      <p class="tier__pct">15%<span data-i18n="loy.off"></span></p>
+      <ul class="checks">
+        <li data-i18n="loy.plat.1"></li>
+        <li data-i18n="loy.plat.2"></li>
+        <li data-i18n="loy.plat.3"></li>
+      </ul>
+    </article>
+  </div>
+
+  <div class="container perks">
+    <article class="perk reveal">
+      <span class="icon-tile icon-tile--solid"><svg viewBox="0 0 24 24"><path d="M3.5 12.3V4.5a1 1 0 0 1 1-1h7.8l8.2 8.2-8.8 8.8-8.2-8.2Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="8" cy="8" r="1.5" fill="currentColor"/></svg></span>
+      <div>
+        <h3 data-i18n="loy.b1.t"></h3>
+        <p data-i18n="loy.b1.s"></p>
+      </div>
+    </article>
+    <article class="perk reveal">
+      <span class="icon-tile icon-tile--solid"><svg viewBox="0 0 24 24"><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9L12 3.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
+      <div>
+        <h3 data-i18n="loy.b2.t"></h3>
+        <p data-i18n="loy.b2.s"></p>
+      </div>
+    </article>
+    <article class="perk reveal">
+      <span class="icon-tile icon-tile--solid"><svg viewBox="0 0 24 24"><rect x="3.5" y="8" width="17" height="4.5" rx="1" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M5 12.5V20h14v-7.5M12 8v12M12 8c-1.5-3.5-5.5-4-5.5-1.5S10 8 12 8Zm0 0c1.5-3.5 5.5-4 5.5-1.5S14 8 12 8Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
+      <div>
+        <h3 data-i18n="loy.b3.t"></h3>
+        <p data-i18n="loy.b3.s"></p>
+      </div>
+    </article>
+    <article class="perk reveal">
+      <span class="icon-tile icon-tile--solid"><svg viewBox="0 0 24 24"><path d="M12 3 4.5 6v5.5c0 4.5 3.2 8 7.5 9.5 4.3-1.5 7.5-5 7.5-9.5V6L12 3Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m8.8 12 2.2 2.2 4.2-4.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <div>
+        <h3 data-i18n="loy.b4.t"></h3>
+        <p data-i18n="loy.b4.s"></p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section faq" id="faq">
+  <div class="container faq__grid">
+    <div class="reveal">
+      <p class="eyebrow" data-i18n="faq.eyebrow"></p>
+      <h2 class="h2" data-i18n="faq.title"></h2>
+    </div>
+    <div class="faq__list" id="faqList"></div>
+  </div>
+</section>
+
+<!-- ============ CONTACTS ============ -->
+<section class="section contacts" id="contacts">
+  <div class="container contacts__grid">
+    <div class="contacts__info reveal">
+      <p class="eyebrow" data-i18n="contact.eyebrow"></p>
+      <h2 class="h2" data-i18n="contact.title"></h2>
+      <p class="lead" data-i18n="contact.text"></p>
+      <ul class="contacts__list">
+        <li>
+          <span class="icon-tile"><svg viewBox="0 0 24 24"><path d="M6.5 3.5h3l1.5 4-2 1.5a11 11 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2 2A16 16 0 0 1 4.5 5.5a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span>
+          <div><small data-i18n="contact.call"></small><a data-link="tel" href="#" data-contact="phone"></a></div>
+        </li>
+        <li>
+          <span class="icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+          <div><small data-i18n="contact.hoursLabel"></small><span data-i18n="contact.hours"></span></div>
+        </li>
+        <li>
+          <span class="icon-tile"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="10" r="2.4" fill="none" stroke="currentColor" stroke-width="1.7"/></svg></span>
+          <div><small data-i18n="contact.addressLabel"></small><span data-i18n="contact.address"></span></div>
+        </li>
+      </ul>
+      <div class="contacts__social">
+        <a class="social social--wa" data-link="whatsapp" href="#" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="ico ico--wa"></i></a>
+        <a class="social" data-link="telegram" href="#" target="_blank" rel="noopener" aria-label="Telegram"><i class="ico ico--tg"></i></a>
+        <a class="social" data-link="instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram"><i class="ico ico--ig"></i></a>
+      </div>
+    </div>
+
+    <form class="form reveal" id="bookForm" novalidate>
+      <div class="form__row">
+        <label class="field"><span data-i18n="f.name"></span><input name="name" required autocomplete="name"></label>
+        <label class="field"><span data-i18n="f.phone"></span><input name="phone" type="tel" required autocomplete="tel" placeholder="+373"></label>
+      </div>
+      <label class="field"><span data-i18n="f.car"></span>
+        <select name="car" id="formCar"></select>
+      </label>
+      <div class="form__row">
+        <label class="field field--date"><span data-i18n="f.from"></span><input name="from" id="dateFrom" type="text" required readonly></label>
+        <label class="field field--date"><span data-i18n="f.to"></span><input name="to" id="dateTo" type="text" required readonly></label>
+      </div>
+      <label class="field"><span data-i18n="f.comment"></span><textarea name="comment" rows="3"></textarea></label>
+      <p class="form__error" id="formError" data-i18n="f.error" hidden></p>
+      <button class="btn btn--glow btn--block" type="submit">
+        <i class="ico ico--wa"></i><span data-i18n="f.submit"></span>
+      </button>
+      <p class="form__note" data-i18n="f.note"></p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <!-- line icons used in the footer -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 11v5M12 8h.01" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6.5h11M9 12h11M9 17.5h11M4.5 6.5h.01M4.5 12h.01M4.5 17.5h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-bag" viewBox="0 0 24 24"><rect x="3.5" y="7.5" width="17" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8.5 7.5V6a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v1.5" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+    <symbol id="i-car" viewBox="0 0 24 24"><path d="M5 16.5V11l1.7-4.2A2 2 0 0 1 8.6 5.5h6.8a2 2 0 0 1 1.9 1.3L19 11v5.5M5 11h14M5 16.5h14v2H5zM7.5 14h.01M16.5 14h.01" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3.8 2.5 5.1 5.6.8-4 4 1 5.5-5.1-2.7-5 2.7 1-5.5-4.1-4 5.6-.8L12 3.8Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+    <symbol id="i-card" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 10h18" stroke="currentColor" stroke-width="1.7"/></symbol>
+    <symbol id="i-seat" viewBox="0 0 24 24"><path d="M6 17v-5a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v5M4 17h16v2.5H4zM8 9V6.5A1.5 1.5 0 0 1 9.5 5h5A1.5 1.5 0 0 1 16 6.5V9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+    <symbol id="i-fuel" viewBox="0 0 24 24"><path d="M5 20V5.5A1.5 1.5 0 0 1 6.5 4h6A1.5 1.5 0 0 1 14 5.5V20M3.5 20h12M5 10h9M14 9h1.5a1.5 1.5 0 0 1 1.5 1.5v5a1.5 1.5 0 0 0 3 0V9l-2.5-2.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M9.7 9.5a2.4 2.4 0 0 1 4.6.8c0 1.6-2.3 2-2.3 3.5M12 16.8h.01" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 3.5h7l4 4V20a.5.5 0 0 1-.5.5h-10A.5.5 0 0 1 7 20V3.5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M14 3.5V8h4M9.5 12.5h5M9.5 16h5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="10" r="2.4" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.5 3.5h3l1.5 4-2 1.5a11 11 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2 2A16 16 0 0 1 4.5 5.5a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  </svg>
+
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <a href="#top" class="logo" aria-label="CarPark">
+        <img src="logo.png" alt="" class="logo__light">
+        <img src="logo.png" alt="" class="logo__accent">
+      </a>
+      <p class="footer__tag" data-i18n="footer.tag"></p>
+      <div class="footer__social">
+        <a class="social" data-link="facebook" href="#" target="_blank" rel="noopener" aria-label="Facebook"><i class="ico ico--fb"></i></a>
+        <a class="social" data-link="instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram"><i class="ico ico--ig"></i></a>
+        <a class="social" data-link="whatsapp" href="#" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="ico ico--wa"></i></a>
+      </div>
+    </div>
+
+    <div class="footer__col">
+      <h4 data-i18n="footer.company"></h4>
+      <a href="#why"><svg><use href="#i-info"/></svg><span data-i18n="footer.about"></span></a>
+      <a href="#how"><svg><use href="#i-list"/></svg><span data-i18n="footer.howWe"></span></a>
+      <a href="#" data-link="career" target="_blank" rel="noopener"><svg><use href="#i-bag"/></svg><span data-i18n="footer.careers"></span></a>
+    </div>
+    <div class="footer__col">
+      <h4 data-i18n="footer.cars"></h4>
+      <a href="#catalog" data-go="fleet"><svg><use href="#i-car"/></svg><span data-i18n="footer.fleet"></span></a>
+      <a href="#catalog" data-go="deluxe"><svg><use href="#i-star"/></svg><span data-i18n="footer.deluxe"></span></a>
+    </div>
+    <div class="footer__col">
+      <h4 data-i18n="footer.services"></h4>
+      <a href="#loyalty"><svg><use href="#i-card"/></svg><span data-i18n="footer.loyalty"></span></a>
+      <a href="#driver" data-soon><svg><use href="#i-seat"/></svg><span data-i18n="footer.driver"></span></a>
+      <a href="#loyalty"><svg><use href="#i-fuel"/></svg><span>Vento 10%</span></a>
+    </div>
+    <div class="footer__col">
+      <h4 data-i18n="footer.support"></h4>
+      <a href="#faq"><svg><use href="#i-help"/></svg><span data-i18n="footer.faq"></span></a>
+      <a href="#" data-link="whatsapp" target="_blank" rel="noopener"><i class="ico ico--wa"></i><span data-i18n="footer.wa"></span></a>
+      <a href="#" data-legal="terms"><svg><use href="#i-doc"/></svg><span data-i18n="footer.terms"></span></a>
+      <a href="#" data-legal="privacy" class="is-accent"><svg><use href="#i-lock"/></svg><span data-i18n="footer.privacy"></span></a>
+    </div>
+    <div class="footer__col">
+      <h4 data-i18n="footer.contacts"></h4>
+      <a href="#" data-link="airport" target="_blank" rel="noopener"><svg><use href="#i-pin"/></svg><span data-i18n="footer.airport"></span></a>
+      <a href="#" data-link="tel"><svg><use href="#i-phone"/></svg><span data-contact="phone"></span></a>
+      <a href="#" data-link="whatsapp" target="_blank" rel="noopener"><i class="ico ico--wa"></i><span data-i18n="footer.writeWa"></span></a>
+    </div>
+  </div>
+
+  <div class="container footer__bottom">
+    <p>© <span id="year"></span> CarPark · With <b>♥</b> from Moldova</p>
+    <p class="footer__legal">
+      <a href="#" data-legal="terms" data-i18n="footer.terms"></a> ·
+      <a href="#" data-legal="privacy" data-i18n="footer.privacy"></a> ·
+      <a href="#" data-legal="cookies">Cookies</a>
+    </p>
+  </div>
+</footer>
+
+<a class="fab-wa" data-link="whatsapp" href="#" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="ico ico--wa"></i></a>
+
+<!-- ============ CAR MODAL ============ -->
+<div class="modal" id="carModal" hidden>
+  <div class="modal__backdrop" data-close></div>
+  <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal__close" type="button" data-close data-i18n-aria="modal.close">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+    <div class="modal__body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- ============ ACCOUNT MODAL ============ -->
+<div class="modal" id="accountModal" hidden>
+  <div class="modal__backdrop" data-close></div>
+  <div class="modal__dialog modal__dialog--sm" role="dialog" aria-modal="true" aria-labelledby="accTitle">
+    <button class="modal__close" type="button" data-close data-i18n-aria="modal.close">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+    <div class="account" id="accountBody"></div>
+  </div>
+</div>
+
+<!-- ============ LEGAL MODAL ============ -->
+<div class="modal" id="legalModal" hidden>
+  <div class="modal__backdrop" data-close></div>
+  <div class="modal__dialog modal__dialog--sm" role="dialog" aria-modal="true" aria-labelledby="legalTitle">
+    <button class="modal__close" type="button" data-close data-i18n-aria="modal.close">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+    <div class="legal" id="legalBody"></div>
+  </div>
+</div>
+
+<!-- ============ "COMING SOON" MODAL (backup driver) ============ -->
+<div class="modal" id="soonModal" hidden>
+  <div class="modal__backdrop" data-close></div>
+  <div class="modal__dialog modal__dialog--sm soon" role="dialog" aria-modal="true" aria-labelledby="soonTitle">
+    <button class="modal__close" type="button" data-close data-i18n-aria="modal.close">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+    <span class="soon__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M5 16.5V11l1.7-4.2A2 2 0 0 1 8.6 5.5h6.8a2 2 0 0 1 1.9 1.3L19 11v5.5M5 11h14M5 16.5h14v2H5zM7.5 14h.01M16.5 14h.01" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </span>
+    <h3 id="soonTitle" data-i18n="soon.title"></h3>
+    <p class="soon__text" data-i18n="soon.text"></p>
+    <form class="soon__form" id="soonForm" novalidate>
+      <input type="email" name="email" required autocomplete="email" placeholder="nume@email.md" data-i18n-aria="soon.email">
+      <p class="form__error" id="soonError" data-i18n="soon.error" hidden></p>
+      <button class="btn btn--glow btn--block" type="submit" data-i18n="soon.submit"></button>
+    </form>
+    <p class="soon__done" id="soonDone" hidden>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 12.5 4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span data-i18n="soon.done"></span>
+    </p>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/l10n/ru.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/l10n/ro.min.js"></script>
+<script src="i18n.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
